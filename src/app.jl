@@ -3,6 +3,7 @@
     input ::Input  = Input()
     mouse ::Mouse  = Mouse()
     clock ::Clock  = Clock()
+    canvas::Canvas = Canvas()
 end
 
 const Application = App()
@@ -34,6 +35,9 @@ function init(app::App)
     antialiasing = @settings[antialiasing]::Bool
     NanoVG.create(NanoVG.GL3; antialiasing)
 
+    app.canvas = Canvas(@window[width, height]...)
+    bind(app.canvas)
+
     loadfonts()
     @fire setup
 end
@@ -47,15 +51,23 @@ function start(app::App)
         wait(app.window)
         update(clock)
 
-        if elapsed(app.clock) >= frametime()
+        if elapsed(clock) >= frametime()
             reset(clock)
             update(app.clock)
             @fire before_update
 
             let window = app.window, dpr = scaleof(window)
-                glViewport(0, 0, size(window)...)
-                NanoVG.frame(wsize(window)..., dpr)
+                fw, fh = size(window)
+                ww, wh = wsize(window)
+
+                NanoVG.frame(app.canvas, dpr)
                 @fire update
+                NanoVG.render(app.canvas)
+
+                glViewport(0, 0, fw, fh)
+                NanoVG.frame(ww, wh, dpr)
+                fillcolor(pattern(app.canvas, 0, 0))
+                rect(0, 0, fw, fh, :fill)
                 NanoVG.render()
             end
 
