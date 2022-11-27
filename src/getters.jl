@@ -236,25 +236,34 @@ Tela.Input
 You can access individual properties using the `getindex` syntax:
 
 ```julia
-julia> @input[prop1]
----
+julia> @input[key]
+Key(UNKNOWN::-1)
 
-julia> @input[prop2]
----
+julia> @input[text]
+""
 ```
 
 Accessing multiple properties at once is allowed:
 
 ```julia
-julia> @input[prop1, prop2]
-(---, ---)
+julia> @input[key, drop]
+(Key(UNKNOWN::-1), String[])
 
-julia> @input[prop1, prop2, prop3]
-(---, ---, ---)
+julia> @input[key, drop, text]
+(Key(UNKNOWN::-1), String[], "")
 ```
 """
 macro input() :(Application.input) end
 macro input(i) getter(:(@input), i) end
+
+"""
+    @canvas() -> NanoVG.Canvas
+    @canvas[prop] -> Any
+
+Returns the current application `canvas`.
+"""
+macro canvas() :(Application.canvas) end
+macro canvas(i) getter(:(@canvas), i) end
 
 # * ------------------------------------------------------------------------------- * #
 # * -----------------------------| Common Properties |----------------------------- * #
