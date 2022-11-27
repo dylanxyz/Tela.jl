@@ -17,9 +17,8 @@ const Events = dictionary((
     :onminimize    => Observable(@window),
     :onrestore     => Observable(@window),
     # Mouse Events
-    :onmousepress  => Observable(@mouse),
-    :onmousedown   => Observable(@mouse),
     :onmouseup     => Observable(@mouse),
+    :onmousedown   => Observable(@mouse),
     :onmousemove   => Observable(@mouse),
     :ondrag        => Observable(@mouse),
     :onscroll      => Observable(@mouse),
@@ -127,7 +126,6 @@ end
 
 # * -----------------------------| Mouse Handlers |----------------------------- * #
 
-onmousepress(@nospecialize(f::Function)) = on(f, @events[onmousepress])
 onmousedown(@nospecialize(f::Function)) = on(f, @events[onmousedown])
 onmousemove(@nospecialize(f::Function)) = on(f, @events[onmousemove])
 onmouseup(@nospecialize(f::Function)) = on(f, @events[onmouseup])
@@ -137,8 +135,6 @@ ondrag(@nospecialize(f::Function)) = on(f, @events[ondrag])
 function onmousepress(::Any, button, action, mods)
     @mouse[button] = MouseButton(button)
     @mouse[mods] = mods
-
-    @fire onmousepress
 
     if action == GLFW.PRESS
         @mouse[action] = :press
@@ -184,7 +180,7 @@ function onkeypress(::Any, key, code, action, mods)
         @fire onkeypress onkeydown
     elseif action == GLFW.RELEASE
         @input[action] = :release
-        @fire onkeypress onkeyup
+        @fire onkeyup
     else
         @fire onkeypress
     end
