@@ -1,7 +1,15 @@
 name = "Tela"
 uuid = "b7b70457-558f-4c00-9cd9-184be3ab03f6"
 authors = ["Jorge Pereira <jorge.brito.xyz@gmail.com> and contributors"]
-version = "0.1.0"
+version = "0.1.1"
+
+[deps]
+Dictionaries = "85a47980-9c8c-11e8-2b9f-f7ca1fa99fb4"
+GLFW = "f7f18e0c-5ee9-5ccd-a5bf-e8befd85ed98"
+ModernGL = "66fc600b-dfda-50eb-8b99-91cfa97b1301"
+NanoVG = "c6e2bc90-135b-40df-be1e-4d6eac081f64"
+Observables = "510215fc-4207-5dde-b226-833fc4488ee2"
+Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 
 [compat]
 julia = "1"
