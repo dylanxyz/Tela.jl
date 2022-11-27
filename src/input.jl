@@ -26,8 +26,15 @@ end
     drop::Vector{String} = String[]
 end
 
-isup(key::Key) = GLFW.GetKey(context(@window), key.id) == Cint(GLFW.RELEASE)
-isdown(key::Key) = GLFW.GetKey(context(@window), key.id) == Cint(GLFW.PRESS)
+function isup(key::Key)
+    key.id == -1 && return false
+    GLFW.GetKey(context(@window), key.id) == Cint(GLFW.RELEASE)
+end
+
+function isdown(key::Key)
+    key.id == -1 && return false
+    GLFW.GetKey(context(@window), key.id) == Cint(GLFW.PRESS)
+end
 
 isup(input::Input) = isup(input.key)
 isdown(input::Input) = isdown(input.key)
