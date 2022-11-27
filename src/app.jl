@@ -80,6 +80,10 @@ end
 function dispose(app::App)
     @fire dispose
 
+    if app.canvas.fbo != C_NULL
+        NanoVG.delete(app.canvas)
+    end
+
     if isassigned(NanoVG.CONTEXT) && NanoVG.@vg() != C_NULL
         NanoVG.dispose()
     end
