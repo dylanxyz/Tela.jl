@@ -73,6 +73,18 @@ function onresize(::Any, width, height)
         @window[scale]  = dpr
         @window[width]  = dpr * width
         @window[height] = dpr * height
+
+        if width > 0 && height > 0
+            fw, fh = @window[width, height]
+            img = pattern(@app[canvas], 0, 0)
+
+            @app[canvas] = Canvas(fw, fh)
+
+            NanoVG.frame(@app[canvas], dpr)
+            fillcolor(img)
+            rect(0, 0, fw, fh, :fill)
+            NanoVG.render()
+        end
     end
 
     @fire onresize
