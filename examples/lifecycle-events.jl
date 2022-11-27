@@ -1,9 +1,9 @@
 using Tela
+using NanoVG
 
 setting"title"  = "Basic Example"
 setting"width"  = 800
 setting"height" = 600
-setting"vsync"  = true
 
 function configure(::App)
     @info "Configuring..."
@@ -22,6 +22,15 @@ function update(::App)
     end
 
     isdown(mouse"right") && background(rgb(12))
+
+    # Top header
+    fillcolor(rgb(10))
+    rect(0, 0, @width, 30, :fill)
+
+    fillcolor(rgb(244))
+    textalign(:top, :left)
+    fontface("sans")
+    text("Hold Mouse Left 🖱️ to draw | Press Mouse Right 🖱️ to clear", 10, 10)
 end
 
 function dispose(::App)
