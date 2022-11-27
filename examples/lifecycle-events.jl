@@ -1,7 +1,7 @@
 using Tela
 using NanoVG
 
-setting"title"  = "Basic Example"
+setting"title"  = "[Example] Life-Cycle Events"
 setting"width"  = 800
 setting"height" = 600
 
