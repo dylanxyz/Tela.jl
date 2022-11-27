@@ -139,6 +139,8 @@ or if no key is provided, search every asset path.
 
 Throws an [`AssetNotFound`](@ref) error if `path` is not found.
 
+**Examples:**
+
 ```julia
 shell> tree .
 .
