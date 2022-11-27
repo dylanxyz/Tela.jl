@@ -8,6 +8,10 @@ using Reexport
 
 @reexport using NanoVG
 
+import NanoVG: Canvas
+
+Canvas() = Canvas(convert(Ptr{NanoVG.LibNanoVG.NVGLUframebuffer}, C_NULL), 0, 0, 0)
+
 using Base: @kwdef
 using Base.Meta
 
@@ -18,6 +22,7 @@ export @app
 export @asset_str
 export @assets
 export @assets_str
+export @canvas
 export @events
 export @framerate
 export @frametime
