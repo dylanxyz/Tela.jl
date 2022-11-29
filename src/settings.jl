@@ -57,6 +57,11 @@ function rmsetting(name::Symbol)
     return Settings()
 end
 
+"""
+    setting"name" -> Any
+
+Gets/Sets the value of the setting `name`.
+"""
 macro setting_str(s)
     sym = QuoteNode(Symbol(s))
     :(Settings()[$sym])
