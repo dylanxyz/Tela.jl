@@ -74,6 +74,8 @@ function start(app::App)
             @fire after_update
             update(app.window)
         end
+
+        update(app.mouse)
     end
 end
 

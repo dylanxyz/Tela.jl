@@ -167,21 +167,21 @@ Tela.Window
 You can access individual properties using the `getindex` syntax:
 
 ```julia
-julia> @window[prop1]
----
+julia> @window[width]
+400.0
 
-julia> @window[prop2]
----
+julia> @window[height]
+400.0
 ```
 
 Accessing multiple properties at once is allowed:
 
 ```julia
-julia> @window[prop1, prop2]
-(---, ---)
+julia> @window[x, y]
+(10, 10)
 
-julia> @window[prop1, prop2, prop3]
-(---, ---, ---)
+julia> @window[scale, x, y]
+(1.0, 10, 100)
 ```
 """
 macro window() :(Application.window) end
@@ -206,7 +206,6 @@ false
 
 julia> @mouse[button]
 MouseButton(Unknown)
----
 ```
 
 Accessing multiple properties at once is allowed:

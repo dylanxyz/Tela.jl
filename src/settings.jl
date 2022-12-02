@@ -1,3 +1,13 @@
+const DefaultSettings = (;
+    title        = "My App",
+    width        = 400,
+    height       = 400,
+    vsync        = 0,
+    framerate    = Inf,
+    resizable    = true,
+    antialiasing = true,
+)
+
 """
 A dictionary containing the current application settings.
 """
@@ -28,16 +38,6 @@ function Base.setindex!(::Settings, val, i::Symbol)
     return Settings()
 end
 
-const DefaultSettings = (;
-    title        = "My App",
-    width        = 400,
-    height       = 400,
-    vsync        = 0,
-    framerate    = Inf,
-    resizable    = true,
-    antialiasing = true,
-)
-
 const _Settings = dictionary(k => Pair(typeof(v), v) for (k, v) in pairs(DefaultSettings))
 
 """
@@ -57,6 +57,11 @@ function rmsetting(name::Symbol)
     return Settings()
 end
 
+"""
+    setting"name" -> Any
+
+Gets/Sets the value of the setting `name`.
+"""
 macro setting_str(s)
     sym = QuoteNode(Symbol(s))
     :(Settings()[$sym])
