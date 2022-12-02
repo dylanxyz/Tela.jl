@@ -1,17 +1,31 @@
 using Tela
-using NanoVG
 
-setting"title"  = "[Example] Life-Cycle Events"
+setting"title"  = "[Example] Mouse Events"
 setting"width"  = 800
 setting"height" = 600
 
-function configure(::App)
-    @info "Configuring..."
+setup(::App) = background(rgb(12))
+
+function onmousedown(mouse::Mouse)
+    @info "A mouse button was pressed down!" button=mouse.button
 end
 
-function setup(::App)
-    @info "Starting..."
-    background(rgb(12))
+function onmouseup(mouse::Mouse)
+    @info "A mouse button was released!" button=mouse.button
+end
+
+function onmousemove(mouse::Mouse)
+    pos = mouse.x, mouse.y
+    @info "Cursor moved!" pos
+end
+
+function ondrag(mouse::Mouse)
+    pos = mouse.x, mouse.y
+    @info "Cursor dragged!" pos
+end
+
+function onscroll(mouse::Mouse)
+    @info "Scrolling with the mouse!" scroll=mouse.scroll
 end
 
 function update(::App)
@@ -31,10 +45,6 @@ function update(::App)
     textalign(:top, :left)
     fontface("sans")
     text("Hold Mouse Left 🖱️ to draw | Press Mouse Right 🖱️ to clear", 10, 10)
-end
-
-function dispose(::App)
-    @info "Bye..."
 end
 
 Tela.@run()
