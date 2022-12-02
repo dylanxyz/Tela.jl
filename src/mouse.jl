@@ -89,3 +89,7 @@ macro mouse_str(s)
     isdefined(GLFW, sym) || error("invalid mouse button: " * repr(s))
     return :(MouseButton(GLFW.$sym))
 end
+
+function update(mouse::Mouse)
+    mouse.scroll = Vec2f(0, 0)
+end
