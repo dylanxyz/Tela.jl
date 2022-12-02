@@ -1,17 +1,29 @@
 using Tela
-using NanoVG
 
-setting"title"  = "[Example] Life-Cycle Events"
+setting"title"  = "[Example] Input Events"
 setting"width"  = 800
 setting"height" = 600
 
-function configure(::App)
-    @info "Configuring..."
+setup(::App) = background(rgb(12))
+
+function onkeydown(input::Input)
+    @info "A key was pressed!" key=input.key
 end
 
-function setup(::App)
-    @info "Starting..."
-    background(rgb(12))
+function onkeyup(input::Input)
+    @info "A key was released!" key=input.key
+end
+
+function onkeypress(input::Input)
+    @info "A key is being pressed down!" key=input.key
+end
+
+function oninput(input::Input)
+    @info "A character was typed!" text=input.text
+end
+
+function ondrop(input::Input)
+    @info "Some paths were dropped!" paths=input.drop
 end
 
 function update(::App)
@@ -31,10 +43,6 @@ function update(::App)
     textalign(:top, :left)
     fontface("sans")
     text("Hold Mouse Left 🖱️ to draw | Press Mouse Right 🖱️ to clear", 10, 10)
-end
-
-function dispose(::App)
-    @info "Bye..."
 end
 
 Tela.@run()
