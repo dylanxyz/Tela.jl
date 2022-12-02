@@ -12,6 +12,7 @@ Observables = "510215fc-4207-5dde-b226-833fc4488ee2"
 Reexport = "189a3867-3050-52da-a836-e630ba90ab69"
 
 [compat]
+Observables = "0.5"
 ModernGL = "1"
 Dictionaries = "0.3"
 GLFW = "3"
