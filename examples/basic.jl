@@ -34,7 +34,7 @@ end
 # Runs the application.
 #
 # Basically, this macro will look at the functions you defined and
-# add then as callback listeners to specific Tela events, based on
+# add them as callback listeners to specific Tela events, based on
 # their name.
 #
 # So for example, the setup and update functions defined above will
