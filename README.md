@@ -7,6 +7,8 @@ and [p5.js](https://p5js.org), designed to be easy to use for programmers and
 non programmers (artists, students, etc) to build interactive applications,
 visualizations, simulations, games and computer generated art. 
 
+*Warning: this project is in a very early stage and under development.*
+
 ## Installation
 
 Tela is a &nbsp;
