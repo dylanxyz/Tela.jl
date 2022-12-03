@@ -6,6 +6,7 @@ const DefaultSettings = (;
     framerate    = Inf,
     resizable    = true,
     antialiasing = true,
+    addcallbacks = true,
 )
 
 """
