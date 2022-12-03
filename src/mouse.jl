@@ -91,9 +91,11 @@ macro mouse_str(s)
 end
 
 function update(mouse::Mouse)
+    mx, my = position(mouse)
+
     let dpr = @window[scale]
         mouse.px, mouse.py = mouse.x, mouse.y
-        mouse.x, mouse.y = dpr .* position(mouse)
+        mouse.x, mouse.y = dpr .* (mx, my)
         mouse.dx = mouse.x - mouse.px
         mouse.dy = mouse.y - mouse.py
 
