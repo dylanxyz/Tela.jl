@@ -75,7 +75,7 @@ function onresize(::Any, width, height)
 
         # resize the canvas
         if width > 0 && height > 0
-            fw, fh = @window[width, height]
+            fw, fh = dpr .* (width, height)
             img = pattern(@app[canvas], 0, 0)
 
             @app[canvas] = Canvas(fw, fh)
