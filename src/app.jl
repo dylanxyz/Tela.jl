@@ -74,7 +74,7 @@ function start(app::App)
             end
 
             @fire after_update
-            swapbuffers(window)
+            swapbuffers(app.window)
         end
 
         update(app.window)
