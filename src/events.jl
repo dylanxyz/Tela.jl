@@ -69,10 +69,11 @@ onmove(@nospecialize(f::Function)) = on(f, @events[onmove])
 
 function onresize(::Any, width, height)
     let dpr = scaleof(@window)
-        @window[scale]  = dpr
-        @window[width]  = dpr * width
-        @window[height] = dpr * height
+        # @window[scale]  = dpr
+        # @window[width]  = dpr * width
+        # @window[height] = dpr * height
 
+        # resize the canvas
         if width > 0 && height > 0
             fw, fh = @window[width, height]
             img = pattern(@app[canvas], 0, 0)
@@ -90,8 +91,8 @@ function onresize(::Any, width, height)
 end
 
 function onmove(::Any, x,  y)
-    @window[px, py] = @window[x, y]
-    @window[x, y] = x, y
+    # @window[px, py] = @window[x, y]
+    # @window[x, y] = x, y
 
     @fire onmove
 end
@@ -148,9 +149,9 @@ function onmousepress(::Any, button, action, mods)
 end
 
 function onmousemove(::Any, x, y)
-    @mouse[px, py] = @mouse[x, y]
-    @mouse[x, y] = (x, y) .* @window[scale]
-    @mouse[dx, dy] = @mouse[x, y] .- @mouse[px, py]
+    # @mouse[px, py] = @mouse[x, y]
+    # @mouse[x, y] = (x, y) .* @window[scale]
+    # @mouse[dx, dy] = @mouse[x, y] .- @mouse[px, py]
     @fire onmousemove
 
     if @mouse[dragging]
