@@ -91,5 +91,13 @@ macro mouse_str(s)
 end
 
 function update(mouse::Mouse)
-    mouse.scroll = Vec2f(0, 0)
+    let dpr = @window[scale]
+        mouse.px, mouse.py = mouse.x, mouse.y
+        mouse.x, mouse.y = dpr .* position(mouse)
+        mouse.dx = mouse.x - mouse.px
+        mouse.dy = mouse.y - mouse.py
+
+        # reset the scroll
+        mouse.scroll = Vec2f(0, 0)
+    end
 end
