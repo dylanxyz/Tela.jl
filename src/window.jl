@@ -130,11 +130,11 @@ Enable/disable `window` floating.
 floating!(it::Window,  val::Bool) = GLFW.SetWindowAttrib(context(it), GLFW.FLOATING, val)
 
 """
-    update(window)
+    swapbuffers(window)
 
 Update the `window`, ie, swapping the front and back buffers.
 """
-update(it::Window) = GLFW.SwapBuffers(context(it))
+swapbuffers(it::Window) = GLFW.SwapBuffers(context(it))
 
 function center!(it::Window)
     (; width, height) = GLFW.GetVideoMode(GLFW.GetPrimaryMonitor())
@@ -161,6 +161,14 @@ function init(it::Window)
     it.x, it.y = position(it)
 
     return it
+end
+
+function update(it::Window)
+    it.px, it.py = it.x, it.y
+    it.x, it.y = position(it)
+
+    it.scale = scaleof(it)
+    it.width, it.height = size(it)
 end
 
 function dispose(it::Window)
