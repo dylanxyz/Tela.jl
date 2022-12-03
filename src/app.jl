@@ -14,22 +14,24 @@ function init(app::App)
 
     init(app.window)
 
-    let context = context(app.window)
-        # Window Handlers
-        GLFW.SetWindowCloseCallback(context, onclose)
-        GLFW.SetWindowSizeCallback(context, onresize)
-        GLFW.SetWindowPosCallback(context, onmove)
-        GLFW.SetWindowMaximizeCallback(context, onmaximize)
-        GLFW.SetWindowIconifyCallback(context, onminimize)
-        GLFW.SetWindowFocusCallback(context, onfocus)
-        # Mouse Handlers
-        GLFW.SetCursorPosCallback(context, onmousemove)
-        GLFW.SetMouseButtonCallback(context, onmousepress)
-        GLFW.SetScrollCallback(context, onscroll)
-        # Input Handlers
-        GLFW.SetKeyCallback(context, onkeypress)
-        GLFW.SetCharCallback(context, oninput)
-        GLFW.SetDropCallback(context, ondrop)
+    if setting"addcallbacks"::Bool
+        let context = context(app.window)
+            # Window Handlers
+            GLFW.SetWindowCloseCallback(context, onclose)
+            GLFW.SetWindowSizeCallback(context, onresize)
+            GLFW.SetWindowPosCallback(context, onmove)
+            GLFW.SetWindowMaximizeCallback(context, onmaximize)
+            GLFW.SetWindowIconifyCallback(context, onminimize)
+            GLFW.SetWindowFocusCallback(context, onfocus)
+            # Mouse Handlers
+            GLFW.SetCursorPosCallback(context, onmousemove)
+            GLFW.SetMouseButtonCallback(context, onmousepress)
+            GLFW.SetScrollCallback(context, onscroll)
+            # Input Handlers
+            GLFW.SetKeyCallback(context, onkeypress)
+            GLFW.SetCharCallback(context, oninput)
+            GLFW.SetDropCallback(context, ondrop)
+        end
     end
 
     antialiasing = @settings[antialiasing]::Bool
@@ -72,9 +74,10 @@ function start(app::App)
             end
 
             @fire after_update
-            update(app.window)
+            swapbuffers(window)
         end
 
+        update(app.window)
         update(app.mouse)
     end
 end
