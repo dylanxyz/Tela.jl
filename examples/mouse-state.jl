@@ -26,22 +26,22 @@ const radius = Ref(10.0)
 function update(::App)
     background(rgb(8))
 
-    @layer let i = 0, spacing = 24, y = i * spacing + 10
+    @layer let spacing = 24, y = 10
         fillcolor(rgb(255))
         fontsize(18)
         textalign(:top, :left)
 
-        text("button = $(@mouse[button])", 10, i * spacing + 10); i += 1
-        text("action = $(@mouse[action])", 10, i * spacing + 10); i += 1
-        text("scroll = $(@mouse[scroll])", 10, i * spacing + 10); i += 1
+        text("button = $(@mouse[button])", 10, y); y += spacing
+        text("action = $(@mouse[action])", 10, y); y += spacing
+        text("scroll = $(@mouse[scroll])", 10, y); y += spacing
 
-        i += 1
-        text("x = $(@mouse[x])", 10, i * spacing + 10); i += 1
-        text("y = $(@mouse[y])", 10, i * spacing + 10); i += 1
+        y += spacing
+        text("x = $(@mouse[x])", 10, y); y += spacing
+        text("y = $(@mouse[y])", 10, y); y += spacing
 
-        i += 1
-        text("dx = $(@mouse[dx])", 10, i * spacing + 10); i += 1
-        text("dy = $(@mouse[dy])", 10, i * spacing + 10); i += 1
+        y += spacing
+        text("dx = $(@mouse[dx])", 10, y); y += spacing
+        text("dy = $(@mouse[dy])", 10, y); y += spacing
     end
 
     @layer begin
