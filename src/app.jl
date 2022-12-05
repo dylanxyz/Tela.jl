@@ -55,7 +55,11 @@ function start(app::App)
 
         if elapsed(clock) >= frametime()
             reset(clock)
+
             update(app.clock)
+            update(app.window)
+            update(app.mouse)
+
             @fire before_update
 
             let window = app.window, dpr = scaleof(window)
@@ -75,10 +79,9 @@ function start(app::App)
 
             @fire after_update
             swapbuffers(app.window)
-        end
 
-        update(app.window)
-        update(app.mouse)
+            reset(app.mouse)
+        end
     end
 end
 
