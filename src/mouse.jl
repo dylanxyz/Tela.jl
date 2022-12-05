@@ -98,8 +98,10 @@ function update(mouse::Mouse)
         mouse.x, mouse.y = dpr .* (mx, my)
         mouse.dx = mouse.x - mouse.px
         mouse.dy = mouse.y - mouse.py
-
-        # reset the scroll
-        mouse.scroll = Vec2f(0, 0)
     end
+end
+
+function Base.reset(mouse::Mouse)
+    # reset the scroll
+    mouse.scroll = Vec2f(0, 0)
 end
