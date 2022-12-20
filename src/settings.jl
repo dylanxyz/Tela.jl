@@ -1,3 +1,5 @@
+# TODO: add specific OpenGL settings (client api, context version, debug, etc...)
+
 const DefaultSettings = (;
     title        = "My App",
     width        = 400,
