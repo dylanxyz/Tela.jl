@@ -10,6 +10,7 @@ using Reexport
 
 import NanoVG: Canvas
 
+# TODO: move this to NanoVG
 Canvas() = Canvas(convert(Ptr{NanoVG.LibNanoVG.NVGLUframebuffer}, C_NULL), 0, 0, 0)
 
 using Base: @kwdef
