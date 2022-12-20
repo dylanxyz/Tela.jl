@@ -24,7 +24,7 @@ Searches for a `path` asset from a specific asset `key`,
 or if no key is provided, search every asset path.
 
 If `error` is set to `true`, throws [`AssetNotFound`](@ref) error if
-the `path`could not be found, otherwise, returns an empty string.
+the `path` could not be found, otherwise, returns an empty string.
 
 See also [`@assets`](@ref), [`@assets_str`](@ref) and [`@asset_str`](@ref).
 """
