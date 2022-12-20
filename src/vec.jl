@@ -23,11 +23,14 @@ Base.propertynames(::Vec{2}) = (:x, :y)
 Base.propertynames(::Vec{3}) = (:x, :y, :z)
 Base.propertynames(::Vec{4}) = (:x, :y, :z, :w)
 
-function Base.getproperty(p::Vec{N}, s::Symbol) where {N}
-    s == :x && N >= 1 && return @inbounds p[1]
-    s == :y && N >= 2 && return @inbounds p[2]
-    s == :z && N >= 3 && return @inbounds p[3]
-    s == :w && N >= 4 && return @inbounds p[4]
+@inline function Base.getproperty(p::Vec{N}, s::Symbol) where {N}
+    @inbounds begin
+        s == :x && N >= 1 && return p[1]
+        s == :y && N >= 2 && return p[2]
+        s == :z && N >= 3 && return p[3]
+        s == :w && N >= 4 && return p[4]
+    end
+
     error("Type $(typeof(p)) has no field $s")
 end
 
